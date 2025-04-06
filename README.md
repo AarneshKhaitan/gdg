@@ -1,80 +1,75 @@
 # Financial Chat
 
-Financial Chat is an AI-powered financial advisor designed to help users with stock market analysis, trading insights, and risk management. The system leverages multiple specialized assistants to provide technical analysis, fundamental metrics, sentiment analysis, and more—all via natural language chat interfaces.
+Financial Chat is an AI-driven financial advisory platform designed to assist users with stock market analysis, trading insights, and risk management. By leveraging advanced language models and a suite of specialized tools, Financial Chat delivers comprehensive technical, fundamental, and sentiment analysis—transforming complex financial data into actionable insights through a natural language chat interface.
 
 ## Overview
 
-The project is composed of two main components:
+Financial Chat is built around a modular architecture that separates concerns into multiple specialized components. The platform’s core is powered by an AI conversational engine that intelligently delegates tasks to various assistants, each tailored to a specific area of financial analysis. This enables the system to handle diverse requests such as stock universe scans, in-depth technical analysis, risk management calculations, and real-time market sentiment evaluation.
 
-- **Backend (financial-chat):**  
-  Contains the application logic, including agent chains, tools for fetching stock data, performing technical analysis, risk management calculations, and integrations with external APIs. It provides a FastAPI server that processes user queries and returns analysis results.
-  
-- **Frontend (nextjs-frontend):**  
-  A Next.js-based user interface that allows users to interact with the AI financial advisor through a chat interface. The UI provides visualizations (charts, news grids) and handles user input.
+### Key Components
+
+- **Conversational AI Engine:**  
+  At its heart, Financial Chat features an AI conversational agent that manages dialog flow and task delegation. The engine processes user queries, selects the appropriate specialized assistant, and integrates responses from multiple tools to present a unified, coherent output.
+
+- **Specialized Assistants:**  
+  Each assistant focuses on a particular domain:
+  - **Stock Scan Assistant:** Scans the market for stocks that meet pre-defined bullish criteria.
+  - **Analysis Assistant:** Delivers a full analysis covering technical and fundamental metrics.
+  - **Chart Analysis Assistant:** Provides visual and textual analysis of stock price trends and chart patterns.
+  - **Risk Management Assistant:** Calculates technical stops, R-multiples, and optimal position sizing.
+  - **Gainers/Losers Assistant:** Fetches and presents market performance data including top gainers and losers.
+
+- **Integrated Tools and Data Sources:**  
+  Financial Chat utilizes a variety of external APIs and libraries:
+  - **Market Data & Financial Metrics:** Retrieves historical stock data, key ratios, and financial statements via sources like Yahoo Finance and OpenBB.
+  - **Technical Analysis:** Calculates moving averages, RSI, ATR, and other technical indicators using specialized libraries and custom algorithms.
+  - **Sentiment Analysis:** Analyzes news headlines and summaries using VADER and data from Alpha Vantage to gauge market sentiment.
+  - **Visualization:** Generates interactive charts with Plotly and uploads images to external hosting services (e.g., Imgur) for broader accessibility.
 
 ## Features
 
-- **AI-Powered Financial Analysis:**  
-  Uses advanced language models and custom tools to deliver real-time financial insights.
-  
-- **Multi-Assistant Architecture:**  
-  Delegates specialized tasks to assistants (e.g., full analysis, chart analysis, risk management) based on the user's query.
-  
-- **Technical and Fundamental Tools:**  
-  Offers functions to fetch price history, calculate technical indicators (SMA, RSI, ATR), compute risk metrics, and analyze news sentiment.
-  
-- **Visualization:**  
-  Generates interactive charts using Plotly and supports image uploads to Imgur for external viewing.
-  
-- **Deployment Ready:**  
-  Includes Dockerfiles and AWS Copilot manifests for containerized deployments and cloud-based infrastructure.
+- **Dynamic Financial Analysis:**  
+  Delivering real-time insights through a blend of technical, fundamental, and sentiment analysis, the platform adapts its approach based on user input to provide the most relevant information.
 
-## Directory Structure
+- **Natural Language Interaction:**  
+  Users interact with the system via a chat interface, making complex financial analysis accessible to both novice investors and seasoned professionals.
 
-financial-chat/
-|__app/
-|   |_chains/
-|   |  |_agent.py            # Agent definitions and conversation flow
-|   |  |_clear_results.py    # Utility to clear previous chat outputs in Streamlit
-|   |  |_templates.py        # Chat prompt templates for various analyses
-|   |_features/
-|   |  |_chart.py            # Chart generation and visualization
-|   |  |_screener.py         # Stock screener integration using FinViz
-|   |  |_technical.py        # Calculation of technical indicators and trendlines
-|   |_tools/
-|   |  |_risk_management.py      # Risk calculations including stops and position sizing
-|   |  |_stock_charts.py         # Stock chart analysis tool
-|   |  |_stock_relative_strength.py  # Relative strength calculations
-|   |  |_stock_sentiment.py      # News sentiment analysis using VADER and Alpha Vantage
-|   |  |_stock_stats.py          # Stock metrics and financial data retrieval
-|   |  |_types.py                # Pydantic models for input validation
-|   |  |_utils.py                # Utility functions for data handling
-|   |_server.py            # FastAPI server entry point
-|   |_ui.py                # Streamlit-based UI for interactive chat
-|__copilot/                # AWS Copilot deployment manifests for different services
-    |_financial-chat-api/   # Backend deployment configuration
-    |_financial-chat-ui/    # Frontend deployment configuration
+- **Customizable Risk Assessment:**  
+  The risk management module calculates critical metrics such as technical stop levels, profit targets based on R-multiples, and optimal position sizes according to user-defined risk parameters.
 
-nextjs-frontend/        # Next.js frontend codebase
-|__app/                 # Next.js pages and components
-|__components/          # Reusable UI components (charts, chat, news, UI elements)
-|__context/             # Application context for state management
-|__lib/                 # API calls and mock data
-|__public/              # Public assets (images, SVGs)
+- **Visual Data Representation:**  
+  With the integration of interactive charts and graphs, users can visually explore historical data trends, technical indicators, and comparative market performance.
 
-## Chat Interaction
+- **Cloud-Ready Deployment:**  
+  Designed for modern cloud infrastructures, the project includes configurations for containerized deployment and orchestration using tools like Docker and AWS Copilot.
 
-- **Streamlit UI:**  
-  Visit the Streamlit application (configured in `ui.py`) to chat with the AI financial advisor.
+## Usage Scenarios
 
-- **Next.js Frontend:**  
-  Provides a modern UI with support for interactive visualizations and detailed analysis outputs.
+Financial Chat can be utilized in various contexts:
+- **Individual Investors:**  
+  Get detailed, on-demand analysis of specific stocks to inform trading decisions.
+- **Financial Advisors:**  
+  Leverage the platform’s insights and visualizations to support client recommendations.
+- **Market Analysts:**  
+  Access comprehensive market scans and risk assessments for a macro-level view of market trends.
 
-## Deployment
+## Architecture & Workflow
 
-- **Docker:**  
-  Use the provided `api.dockerfile` and `ui.dockerfile` to build container images for the backend and frontend respectively.
+1. **User Interaction:**  
+   Users input their queries through the chat interface, either via a Streamlit application or a Next.js frontend.
 
-- **AWS Copilot:**  
-  The `copilot/` directory contains manifests for deploying the Financial Chat API and UI as load balanced web services.
+2. **Query Processing:**  
+   The conversational engine preprocesses the query by correcting errors and identifying key financial entities (e.g., stock symbols, company names).
+
+3. **Assistant Delegation:**  
+   Based on the parsed query, the engine routes the request to the appropriate specialized assistant using a state graph that defines the workflow and decision criteria.
+
+4. **Data Aggregation:**  
+   Each assistant invokes one or more tools that fetch and process financial data, perform technical calculations, or analyze market sentiment.
+
+5. **Response Synthesis:**  
+   The results from various tools are aggregated and synthesized into a coherent response, which is then delivered back to the user via the chat interface.
+
+6. **Iterative Feedback:**  
+   Users can further refine their queries, prompting the system to perform additional analyses or to switch focus between different aspects of financial evaluation.
 
