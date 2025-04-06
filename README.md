@@ -32,34 +32,35 @@ The project is composed of two main components:
 ## Directory Structure
 
 financial-chat/
-  app/
-    chains/
-      agent.py            # Agent definitions and conversation flow
-      clear_results.py    # Utility to clear previous chat outputs in Streamlit
-      templates.py        # Chat prompt templates for various analyses
-    features/
-      chart.py            # Chart generation and visualization
-      screener.py         # Stock screener integration using FinViz
-      technical.py        # Calculation of technical indicators and trendlines
-    tools/
-      risk_management.py      # Risk calculations including stops and position sizing
-      stock_charts.py         # Stock chart analysis tool
-      stock_relative_strength.py  # Relative strength calculations
-      stock_sentiment.py      # News sentiment analysis using VADER and Alpha Vantage
-      stock_stats.py          # Stock metrics and financial data retrieval
-      types.py                # Pydantic models for input validation
-      utils.py                # Utility functions for data handling
-    server.py            # FastAPI server entry point
-    ui.py                # Streamlit-based UI for interactive chat
-  copilot/                # AWS Copilot deployment manifests for different services
-    financial-chat-api/   # Backend deployment configuration
-    financial-chat-ui/    # Frontend deployment configuration
-  nextjs-frontend/        # Next.js frontend codebase
-    app/                 # Next.js pages and components
-    components/          # Reusable UI components (charts, chat, news, UI elements)
-    context/             # Application context for state management
-    lib/                 # API calls and mock data
-    public/              # Public assets (images, SVGs)
+|__app/
+|   |_chains/
+|   |  |_agent.py            # Agent definitions and conversation flow
+|   |  |_clear_results.py    # Utility to clear previous chat outputs in Streamlit
+|   |  |_templates.py        # Chat prompt templates for various analyses
+|   |_features/
+|   |  |_chart.py            # Chart generation and visualization
+|   |  |_screener.py         # Stock screener integration using FinViz
+|   |  |_technical.py        # Calculation of technical indicators and trendlines
+|   |_tools/
+|   |  |_risk_management.py      # Risk calculations including stops and position sizing
+|   |  |_stock_charts.py         # Stock chart analysis tool
+|   |  |_stock_relative_strength.py  # Relative strength calculations
+|   |  |_stock_sentiment.py      # News sentiment analysis using VADER and Alpha Vantage
+|   |  |_stock_stats.py          # Stock metrics and financial data retrieval
+|   |  |_types.py                # Pydantic models for input validation
+|   |  |_utils.py                # Utility functions for data handling
+|   |_server.py            # FastAPI server entry point
+|   |_ui.py                # Streamlit-based UI for interactive chat
+|__copilot/                # AWS Copilot deployment manifests for different services
+    |_financial-chat-api/   # Backend deployment configuration
+    |_financial-chat-ui/    # Frontend deployment configuration
+
+nextjs-frontend/        # Next.js frontend codebase
+|__app/                 # Next.js pages and components
+|__components/          # Reusable UI components (charts, chat, news, UI elements)
+|__context/             # Application context for state management
+|__lib/                 # API calls and mock data
+|__public/              # Public assets (images, SVGs)
 
 ## Chat Interaction
 
